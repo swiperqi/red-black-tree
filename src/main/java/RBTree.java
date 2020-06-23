@@ -8,7 +8,7 @@ public class RBTree {
     private Node root;
 
     /**
-     * 打印，先先序打印，再后续打印
+     * 打印，先先序打印，再中序打印
      */
     public void print() {
         if (root == null) {
@@ -37,6 +37,28 @@ public class RBTree {
             return;
         }
         addNode(val);
+    }
+
+    public void remove(Integer val) {
+        Node node = getNode(val);
+        if (node == null) {
+            return;
+        }
+        // TODO
+    }
+
+    private Node getNode(Integer val) {
+        Node tmp = root;
+        while (tmp != null) {
+            if (tmp.getVal().equals(val)) {
+                return tmp;
+            } else if (tmp.getVal() > val) {
+                tmp = tmp.getLeft();
+            } else if (tmp.getVal() < val) {
+                tmp = tmp.getRight();
+            }
+        }
+        return null;
     }
 
     /**
