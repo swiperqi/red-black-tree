@@ -27,4 +27,4 @@
 ---
 
 流程图
-![红黑树删除节点](https://wx1.sbimg.cn/2020/06/29/2Jwta.png)
+![红黑树删除节点](https://github.com/swiperqi/red-black-tree/blob/master/src/resource/红黑树删除节点.png)
