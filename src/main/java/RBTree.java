@@ -1,6 +1,6 @@
 package main.java;
 
-public class RBTree {
+public class RBTree<T extends Comparable<T>> {
 
     /**
      * 根节点
@@ -28,7 +28,7 @@ public class RBTree {
      *
      * @param val 插入的数据
      */
-    public void put(Integer val) {
+    public void put(T val) {
         // 如果根节点为空，直接设置为根节点
         if (root == null) {
             Node head = new Node(val);
@@ -44,7 +44,7 @@ public class RBTree {
      *
      * @param val 要删除的数据
      */
-    public void remove(Integer val) {
+    public void remove(T val) {
         // 查找要删除的数据存不存在
         Node node = getNode(val);
         // 不存在直接返回
@@ -247,14 +247,14 @@ public class RBTree {
      * @param val 数值
      * @return 返回对应节点，没有则为null
      */
-    private Node getNode(Integer val) {
+    private Node getNode(T val) {
         Node tmp = root;
         while (tmp != null) {
-            if (tmp.getVal().equals(val)) {
+            if (tmp.getVal().compareTo(val) == 0) {
                 return tmp;
-            } else if (tmp.getVal() > val) {
+            } else if (tmp.getVal().compareTo(val) > 0) {
                 tmp = tmp.getLeft();
-            } else if (tmp.getVal() < val) {
+            } else if (tmp.getVal().compareTo(val) < 0) {
                 tmp = tmp.getRight();
             }
         }
@@ -266,12 +266,12 @@ public class RBTree {
      *
      * @param val 插入的数据
      */
-    private void addNode(Integer val) {
+    private void addNode(T val) {
         Node tmp = root;
         Node n;
         // 判断插入数据大小，和树中的数据比较，插入相应的节点中
         while (true) {
-            if (tmp.getVal() >= val) {
+            if (tmp.getVal().compareTo(val) >= 0) {
                 if (tmp.getLeft() == null) {
                     n = new Node(val);
                     n.setParent(tmp);
@@ -281,7 +281,7 @@ public class RBTree {
                     tmp = tmp.getLeft();
                 }
             }
-            if (tmp.getVal() < val) {
+            if (tmp.getVal().compareTo(val) < 0) {
                 if (tmp.getRight() == null) {
                     n = new Node(val);
                     n.setParent(tmp);
@@ -482,11 +482,11 @@ public class RBTree {
         }
     }
 
-    static class Node {
+    class Node {
         /**
          * 节点的值
          */
-        private Integer val;
+        private T val;
 
         /**
          * 红黑节点（true为红色节点，false为黑色节点）
@@ -513,16 +513,16 @@ public class RBTree {
          *
          * @param val 新增节点的值
          */
-        public Node(Integer val) {
+        public Node(T val) {
             this.val = val;
             this.red = true;
         }
 
-        public Integer getVal() {
+        public T getVal() {
             return val;
         }
 
-        public void setVal(Integer val) {
+        public void setVal(T val) {
             this.val = val;
         }
 
